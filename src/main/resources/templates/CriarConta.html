@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crie sua conta</title>
+    <link rel="stylesheet" href="/css/CriarConta.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+
+</head>
+
+<main id="container">
+
+<body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+    <div class="container">
+
+
+            <h1>Crie sua conta</h1>
+
+
+        <form th:action="@{/universoliterario/funcionario/save}" th:object="${funcionario}" method="post" id="form" class="form">
+
+            <!--NOME (CAMPO 0)-->
+            <label for="Nome">Nome</label>
+            <input type="text" name="name" id="Nome" th:field="*{Nome}" class="input required"
+                placeholder="Nome Completo" oninput="nomeValidate()" required>
+
+            <!--EMAIL (CAMPO 1)-->
+            <label for="Email">Email</label>
+
+            <input type="email" name="email" id="email" th:field="*{email}" class="input required"
+                placeholder="Insira o seu Email" onkeyup="emailValidate()" required>
+
+            <!--SENHA (CAMPO 3)-->
+            <label for="Senha">Crie uma senha</label>
+            <input type="password" name="password" id="password" th:field="*{senha}" class="input required"
+                placeholder="Crie uma senha" oninput="mainPasswordValidate()" required>
+
+
+            <!--(CAMPO 4)-->
+            <label for="Senha2">Confirme sua senha</label>
+            <input type="password" name="password2" id="password2" class="input required"
+                placeholder="Confirme sua senha" oninput="comparePassword()" required>
+            <!--SENHA-->
+
+            <button type="submit" id="botão">Confirmar</button>
+        </form>
+
+    </div>
+
+
+    <script src="/js/CriarConta.js"></script>
+</body>
+
+</html>
