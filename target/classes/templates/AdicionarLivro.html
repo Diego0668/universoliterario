@@ -77,17 +77,17 @@
         
               <label for="autor">Autor do Livro</label>
               <select name="genero" th:field="*{autor}" onChange="onstatechange(this)">
-								<option value="0">Escolha os tipos de produtos</option>
+								<option value="0">Escolha um autor</option>
 								<option th:each="autor: ${autor}" th:text="${autor.nome}"
 									th:value="${autor.id}">
 								</option>
 							</select>
         
               <label for="editora">Editora do Livro</label>
-              <select name="genero" th:field="*{genero}" onChange="onstatechange(this)">
-								<option value="0">Escolha os tipos de produtos</option>
-								<option th:each="genero: ${generos}" th:text="${genero.descrição}"
-									th:value="${genero.id}">
+              <select name="editora" th:field="*{editora}" onChange="onstatechange(this)">
+								<option value="0">Escolha a editora</option>
+								<option th:each="editora: ${editora}" th:text="${editora.nome}"
+									th:value="${editora.id}">
 								</option>
 							</select>
       
