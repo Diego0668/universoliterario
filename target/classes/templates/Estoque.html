@@ -62,14 +62,28 @@
   <div class="container">
     <h2>Lista de Livros</h2>
     <div class="livro">
-      <img>
-      <div class="livro" th:each="livro : ${livros}">
-      <div class="livro-info">
-        <h3 th: text="${livro.nome}"></h3>
-        <p th: text="${livro.autor.nome}"></p>
-        <p th: text="${livro.editora.nome}"></p>
-        <p th: text="${livro.preco}"></p>
-      </div>
+      
+      <table>
+      	<thead>
+			   <tr class="text-center">
+			      <th class="col">ID</th>
+			      <th class="col">Titulo</th>
+			      <th class="col">ISBN</th>
+			      <th class="col">Quantidade</th>
+			      <th class="col">Preço</th>
+			    </tr>
+		</thead>
+		<tbody>
+			    <tr th:each="livro : ${livros}" class="text-center">
+                    <td th:text="${livro.id}"></td>
+                    <td th:text="${livro.titulo}"></td>
+                    <td th:text="${livro.isbn}"></td>
+                    <td th:text="${livro.quantidade}"></td>
+                    <td th:text="${livro.preco}"></td>
+                </tr>
+			  
+			  </tbody>
+      </table>
       <div class="livro-btns">
         <button class="btn">Editar</button>
         <button class="btn btn-danger">Excluir</button>

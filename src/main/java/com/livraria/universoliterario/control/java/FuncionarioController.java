@@ -1,5 +1,7 @@
 package com.livraria.universoliterario.control.java;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.livraria.universoliterario.model.entity.Funcionario;
+import com.livraria.universoliterario.model.entity.Livro;
 import com.livraria.universoliterario.service.AutorService;
 import com.livraria.universoliterario.service.EditoraService;
 import com.livraria.universoliterario.service.FuncionarioService;
@@ -40,7 +43,6 @@ public class FuncionarioController {
 		this.autorService = _autorService;
 		this.editoraService = _editoraService;
 		this.livroService = _livroService;
-
 	}
 
 	@GetMapping("/login")
@@ -65,10 +67,13 @@ public class FuncionarioController {
 	
 	@GetMapping("/Estoque")
 	public String getEstoque(ModelMap model) {
+		
 
-		model.addAttribute("funcionario", new Funcionario());
-	
-		return "estoque";
+		List<Livro> livros = livroService.findAll();
+		model.addAttribute("livros", livros);
+		
+		
+		return "Estoque";
 
 	}
 	
@@ -80,13 +85,13 @@ public class FuncionarioController {
 			@RequestParam("email") String email, @RequestParam("senha") String senha,
 			HttpSession session) {
 		
-		Funcionario funclogado = funcionarioService.Acessar(email, senha);
+		Funcionario funclogado = funcionarioService.acessar(email, senha);
 
 		if (funclogado != null) {
 			session.setAttribute("funclogado", funclogado);
 			if (funclogado.getAcesso().equals("func")) {
 				
-				return "redirect:/universoliterario/livros/Estoque";
+				return "redirect:/universoliterario/funcionario/Estoque";
 			} else if (funclogado.getAcesso().equals("adm")) {
 				
 	

@@ -32,15 +32,15 @@ public class Livro {
 	private String statusLivro;
 	
 	@ManyToOne
-	@JoinColumn(name = "editora_id")
+	@JoinColumn(name = "id_editora")
 	private Editora editora;
 	
 	@ManyToOne
-	@JoinColumn(name = "autor_id")
+	@JoinColumn(name = "id_autor")
 	private Autor autor;
 	
 	@ManyToOne
-	@JoinColumn(name = "genero_id")
+	@JoinColumn(name = "id_genero")
 	private Genero genero;
 
 	public long getId() {

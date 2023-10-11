@@ -33,7 +33,7 @@ public class FuncionarioService {
 	}
 
 	@Transactional
-	public Funcionario Acessar(String email, String senha) {
+	public Funcionario acessar(String email, String senha) {
 		Funcionario funcionario = funcionarioRepository.findByEmail(email);
 
 		if (funcionario != null) {

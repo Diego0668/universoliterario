@@ -42,9 +42,9 @@ public class LivroService {
 		return livroRepository.findById(id).get();
 	}
 
-	public List<Livro> ListarTodos() {
-		return livroRepository.findAll();
-
+	public List<Livro> findAll() {
+		List<Livro> livros = livroRepository.findAll();
+		return livros;
 	}
 	
 	
@@ -133,41 +133,6 @@ public class LivroService {
 		return lista;
 	}
 
-
-
-	public GeneroRepository getGeneroRepository() {
-		return generoRepository;
-	}
-
-
-
-	public void setGeneroRepository(GeneroRepository generoRepository) {
-		this.generoRepository = generoRepository;
-	}
-
-
-
-	public AutorRepository getAutorRepository() {
-		return autorRepository;
-	}
-
-
-
-	public void setAutorRepository(AutorRepository autorRepository) {
-		this.autorRepository = autorRepository;
-	}
-
-
-
-	public EditoraRepository getEditoraRepository() {
-		return editoraRepository;
-	}
-
-
-
-	public void setEditoraRepository(EditoraRepository editoraRepository) {
-		this.editoraRepository = editoraRepository;
-	}
 
 	
 }

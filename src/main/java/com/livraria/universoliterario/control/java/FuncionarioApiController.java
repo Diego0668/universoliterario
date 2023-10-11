@@ -58,7 +58,7 @@ public class FuncionarioApiController {
 	@PostMapping("/logarApi")
 	public ResponseEntity<Funcionario> Acessar(ModelMap map, @RequestBody Funcionario _funcionario, HttpSession session) {
 		try {
-			Funcionario funcionario = funcionarioService.Acessar(_funcionario.getEmail(), _funcionario.getSenha());
+			Funcionario funcionario = funcionarioService.acessar(_funcionario.getEmail(), _funcionario.getSenha());
 
 			if (funcionario != null) {
 				return new ResponseEntity<>(funcionario, HttpStatus.OK);
