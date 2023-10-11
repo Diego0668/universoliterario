@@ -91,11 +91,9 @@ public class LivroService {
 		} else {
 			livro.setImagem(null);
 		}
-
-		livro.setStatusLivro("ATIVO");
-
 		return livroRepository.save(livro);
 	}
+
 
 	@Transactional
 	public void atualizarLivro(MultipartFile file, Livro _livro, byte[] foto) {
@@ -123,13 +121,13 @@ public class LivroService {
 		livroRepository.save(_livro);
 	}
 
-	// METODO INSERT INTO PRODUTO
+	// METODO INSERT INTO livro
 	@Transactional
 	public Livro save(Livro _livro) {
 		return livroRepository.save(_livro);
 	}
 
-	// METODO SELECT * FROM PRODUTO
+	// METODO SELECT * FROM livro
 	public List<Livro> ListarTodosLivro() {
 		List<Livro> lista = livroRepository.findAll();
 		return lista;

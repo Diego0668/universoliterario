@@ -51,15 +51,15 @@ public class LivroController {
 			ModelMap model, @RequestParam String autor, @RequestParam String editora) {
 		
 		// código do autor
-		Autor autor1 = new Autor();
-		autor1 = autorService.findByNome(autor);
-		
-		// código da editora
-		Editora editora1 = editoraService.findByNome(editora);
-				
-		// Atualizando informações no livro
-		livro.setAutor(autor1); 	
-		livro.setEditora(editora1);
+//		Autor autor1 = new Autor();
+//		autor1 = autorService.findByNome(autor);
+//		
+//		// código da editora
+//		Editora editora1 = editoraService.findByNome(editora);
+//				
+//		// Atualizando informações no livro
+//		livro.setAutor(autor1); 	
+//		livro.setEditora(editora1);
 		
 		livroService.gravarNovoLivro(file, livro);
 		return "redirect:/universoliterario/livros/Estoque";

@@ -90,7 +90,7 @@ public class FuncionarioController {
 			} else if (funclogado.getAcesso().equals("adm")) {
 				
 	
-				return "redirect:/universoliterario/livro/AdicionarLivro";
+				return "redirect:/universoliterario/livros/AdicionarLivro";
 			}
 		}
 
