@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -85,10 +86,10 @@ public class FuncionarioController {
 			session.setAttribute("funclogado", funclogado);
 			if (funclogado.getAcesso().equals("func")) {
 				
-				return "redirect:/universoliterario/funcionario/Estoque";
+				return "redirect:/universoliterario/livros/Estoque";
 			} else if (funclogado.getAcesso().equals("adm")) {
 				
-				return "redirect:/universoliterario/funcionario/Estoqueadm";
+				return "redirect:/universoliterario/livros/Estoque";
 			}
 		}
 
@@ -105,6 +106,17 @@ public class FuncionarioController {
 
 		return "redirect:/universoliterario/funcionario/login";
 	}
+	
+	@GetMapping("/inativar/{id}")
+	public String inativarFunc(@PathVariable("id") int id, ModelMap model) {
+
+		Funcionario funcionario = funcionarioService.findById(id);
+
+		funcionarioService.inativarFunc(funcionario);
+
+		return "redirect:/lifetree/funcionario/ListaFunc";
+	}
+
 
 	
 

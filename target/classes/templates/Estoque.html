@@ -78,39 +78,13 @@
     </form>
   <div class="container">
     <h2>Estoque</h2>
-    <div class="livro">
-      <img src="imagem1.jpg" alt="Livro 1">
+    <div class="livro" th:each="livro : ${livros}">
       <div class="livro-info">
-        <h3>Título do Livro 1</h3>
-        <p>Autor: Autor do Livro 1</p>
-        <p>Editora: Editora do Livro 1</p>
-        <p>Preço: R$19.99</p>
+        <h3 th: text="${livro.nome}"></h3>
+        <p th: text="${livro.autor.nome}"></p>
+        <p th: text="${livro.editora.nome}"></p>
+        <p th: text="${livro.preco}"></p>
       </div>
-      <div class="livro-btns">
-        <td><a th:href="@{/universoliterario/funcionario/inativar/{id}(id=${funcionario.id})}"
-						
-            class="btn btn-purple btn-sm pb-0 " style="background-color: #7958ce;">Editar</a></td>
-    </tr>
-        <button class="btn btn-purple btn-sm pb-0 " style="background-color: #a682ff;">Inativar</button>
-      </div>
-    </div>
-    <div class="livro">
-      <img src="imagem2.jpg" alt="Livro 2">
-      <div class="livro-info">
-        <h3>Título do Livro 2</h3>
-        <p>Autor: Autor do Livro 2</p>
-        <p>Editora: Editora do Livro 2</p>
-        <p>Preço: R$24.99</p>
-      </div>
-      <div class="livro-btns">
-        <td><a th:href="@{/universoliterario/funcionario/inativar/{id}(id=${funcionario.id})}"
-						
-            class="btn btn-purple btn-sm pb-0 " style="background-color: #7958ce;" >Editar</a></td>
-    </tr>
-        <button class="btn btn-purple btn-sm pb-0 " style="background-color: #a682ff;">Inativar</a></button>
-      </div>
-    </div>
-    <!-- Adicione mais divs .livro conforme necessário para exibir mais livros -->
   </div>
 </body>
 
