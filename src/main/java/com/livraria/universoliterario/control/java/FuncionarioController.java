@@ -89,7 +89,8 @@ public class FuncionarioController {
 				return "redirect:/universoliterario/livros/Estoque";
 			} else if (funclogado.getAcesso().equals("adm")) {
 				
-				return "redirect:/universoliterario/livros/Estoque";
+	
+				return "redirect:/universoliterario/livro/AdicionarLivro";
 			}
 		}
 

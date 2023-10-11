@@ -68,7 +68,10 @@ public class LivroController {
 	//tela de adicionar livro
 	@GetMapping("/AdicionarLivro")
 	public String getAdd(ModelMap model) {
-
+		
+		model.addAttribute("autores", autorService.findAll());
+		model.addAttribute("editoras", editoraService.findAll());
+		model.addAttribute("generos", generoService.findAll());
 		model.addAttribute("livro", new Livro());
 
 		return "AdicionarLivro";

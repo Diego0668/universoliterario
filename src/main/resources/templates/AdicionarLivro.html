@@ -78,7 +78,7 @@
               <label for="autor">Autor do Livro</label>
               <select name="genero" th:field="*{autor}" onChange="onstatechange(this)">
 								<option value="0">Escolha um autor</option>
-								<option th:each="autor: ${autor}" th:text="${autor.nome}"
+								<option th:each="autor: ${autores}" th:text="${autor.nome}"
 									th:value="${autor.id}">
 								</option>
 							</select>
@@ -86,7 +86,7 @@
               <label for="editora">Editora do Livro</label>
               <select name="editora" th:field="*{editora}" onChange="onstatechange(this)">
 								<option value="0">Escolha a editora</option>
-								<option th:each="editora: ${editora}" th:text="${editora.nome}"
+								<option th:each="editora: ${editoras}" th:text="${editora.nome}"
 									th:value="${editora.id}">
 								</option>
 							</select>
@@ -97,7 +97,7 @@
               <label for="genero">Gênero</label>
               <select name="genero" th:field="*{genero}" onChange="onstatechange(this)">
 								<option value="0">Escolha os tipos de produtos</option>
-								<option th:each="genero: ${generos}" th:text="${genero.descrição}"
+								<option th:each="genero: ${generos}" th:text="${genero.descricao}"
 									th:value="${genero.id}">
 								</option>
 							</select>
@@ -112,7 +112,7 @@
               <textarea id="sinopse" name="sinopse" rows="4" required  th:field="*{sinopse}"></textarea>
         
               <label for="imagens">Imagens do Livro</label>
-              <input type="file" id="imagens" name="imagens" accept="image/*" multiple required th:field="*{imagem}">
+              <input type="file" id="imagem" name="file" accept="image/*" multiple required th:field="*{imagem}">
         
               <button type="submit">Adicionar Livro</button>
               
