@@ -62,7 +62,7 @@ public class LivroController {
 //		livro.setEditora(editora1);
 		
 		livroService.gravarNovoLivro(file, livro);
-		return "redirect:/universoliterario/livros/Estoque";
+		return "redirect:/universoliterario/funcionario/Estoque";
 	}
 	
 	//tela de adicionar livro
