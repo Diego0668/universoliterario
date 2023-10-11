@@ -85,10 +85,10 @@ public class FuncionarioController {
 			session.setAttribute("funclogado", funclogado);
 			if (funclogado.getAcesso().equals("func")) {
 				
-				return "redirect:/universoliterario/funcionario/Estoque";
+				return "redirect:/universoliterario/livro/AdicionarLivro";
 			} else if (funclogado.getAcesso().equals("adm")) {
 				
-				return "redirect:/universoliterario/funcionario/Estoqueadm";
+				return "redirect:/universoliterario/funcionario/Estoque";
 			}
 		}
 

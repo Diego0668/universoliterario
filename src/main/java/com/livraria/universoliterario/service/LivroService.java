@@ -29,9 +29,9 @@ public class LivroService {
 			 AutorRepository _autorRepository,  EditoraRepository _editoraRepository) {
 		super();
 		this.livroRepository = _livroRepository;
-		this.setGeneroRepository(_generoRepository);
-		this.setAutorRepository(_autorRepository);
-		this.setEditoraRepository(_editoraRepository);
+		this.generoRepository =_generoRepository;
+		this.autorRepository =_autorRepository;
+		this.editoraRepository = _editoraRepository;
 		
 	
 	}
