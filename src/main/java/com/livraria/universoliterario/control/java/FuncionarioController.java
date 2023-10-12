@@ -33,7 +33,6 @@ public class FuncionarioController {
 	final AutorService autorService;
 	final EditoraService editoraService;
 
-
 	// INJEÇÃO DE DEPENDENCIA
 
 	public FuncionarioController(FuncionarioService _funcionarioService, GeneroService _generoService,
@@ -53,55 +52,45 @@ public class FuncionarioController {
 		return "login";
 
 	}
-	
-	
 
 	@GetMapping("/criarconta")
 	public String getConta(ModelMap model) {
 
 		model.addAttribute("funcionario", new Funcionario());
-	
+
 		return "CriarConta";
 
 	}
-	
+
 	@GetMapping("/Estoque")
 	public String getEstoque(ModelMap model) {
-		
 
 		List<Livro> livros = livroService.findAll();
 		model.addAttribute("livros", livros);
-		
-		
+
 		return "Estoque";
 
 	}
-	
-	
-	
-	
+
 	@PostMapping("/logar")
-	public String Acessar(ModelMap map, 
-			@RequestParam("email") String email, @RequestParam("senha") String senha,
+	public String Acessar(ModelMap map, @RequestParam("email") String email, @RequestParam("senha") String senha,
 			HttpSession session) {
-		
+
 		Funcionario funclogado = funcionarioService.acessar(email, senha);
 
 		if (funclogado != null) {
 			session.setAttribute("funclogado", funclogado);
 			if (funclogado.getAcesso().equals("func")) {
-				
+
 				return "redirect:/universoliterario/funcionario/Estoque";
 			} else if (funclogado.getAcesso().equals("adm")) {
-				
-	
+
 				return "redirect:/universoliterario/livros/AdicionarLivro";
 			}
 		}
 
 		return "redirect:/universoliterario/funcionario/login";
 	}
-	
 
 	@PostMapping("/save")
 	public String saveFuncionario(@ModelAttribute Funcionario funcionario) {
@@ -112,7 +101,7 @@ public class FuncionarioController {
 
 		return "redirect:/universoliterario/funcionario/login";
 	}
-	
+
 	@GetMapping("/inativar/{id}")
 	public String inativarFunc(@PathVariable("id") int id, ModelMap model) {
 
@@ -122,8 +111,35 @@ public class FuncionarioController {
 
 		return "redirect:/lifetree/funcionario/ListaFunc";
 	}
-
-
 	
+	
+	//Adm
+	
+	@GetMapping("/EstoqueADM")
+	public String getEstoqueAdm(ModelMap model) {
+		model.addAttribute("produtos", livroService.findAll());
+		return "EstoqueADM";
+	}
+	
+	@GetMapping("/ListaFunc_")
+	public String getLista(ModelMap map) {
+		map.addAttribute("funcionario", funcionarioService.ListarTodos());
+		return "ListaFunc";
+	}
+	
+	@GetMapping("/ListaFunc")
+	public String verFuncionarios(ModelMap model, @RequestParam(value = "funcionario", required = false) String nome) {
+
+		List<Funcionario> funcionarios = null;
+
+		if (nome == null) {
+			funcionarios = funcionarioService.TodosFuncionarios();
+			model.addAttribute("funcionarios", funcionarios);
+		} else {
+			funcionarios = funcionarioService.FiltroFunc(nome);
+			model.addAttribute("funcionarios", funcionarios);
+		}
+		return "ListaFunc";
+	}
 
 }
