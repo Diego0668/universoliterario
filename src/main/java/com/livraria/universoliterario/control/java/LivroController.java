@@ -1,6 +1,7 @@
 package com.livraria.universoliterario.control.java;
 
 import java.io.IOException;
+import java.util.Base64;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -46,6 +47,8 @@ public class LivroController {
 
 
 	}
+	
+	private String imagem = "";
 	@PostMapping("/save")
 	public String gravarLivro(@RequestParam(value = "file", required = false) MultipartFile file, Livro livro,
 			ModelMap model, @RequestParam String autor, @RequestParam String editora) {
@@ -86,8 +89,19 @@ public class LivroController {
 		return "estoque";
 
 	}
+	@GetMapping("/EditarLivro")
+	public String getEditarLivro(ModelMap model) {
+		
+		model.addAttribute("autores", autorService.findAll());
+		model.addAttribute("editoras", editoraService.findAll());
+		model.addAttribute("generos", generoService.findAll());
+		model.addAttribute("livro", new Livro());
+
+		return "EditarLivro";
+
+	}
 	
-	@GetMapping("/show/image/{id}")
+	@GetMapping("/show/imagem/{id}")
 	@ResponseBody
 	public void mostrarImagem(@PathVariable("id") long id, HttpServletResponse response, Livro livro)
 			throws ServletException, IOException {
@@ -102,6 +116,29 @@ public class LivroController {
 		}
 
 		response.getOutputStream().close();
+	}
+	
+	
+	@GetMapping("/inativar/{id}")
+	public String inativarProd(@PathVariable("id") int id, ModelMap model) {
+
+		Livro livro = livroService.findById(id);
+
+		livroService.inativarLivro(livro);
+
+		return "redirect:/universoliterario/livros/Estoque";
+	}
+	
+	@GetMapping("/atualizar/{id}")
+	public String atualizarProduto(@RequestParam(value = "file", required = false) MultipartFile file,
+			@PathVariable("id") int id, Livro livro, ModelMap model) {
+
+		byte[] _imagem = Base64.getDecoder().decode(imagem);
+
+		livroService.atualizarLivro(file, livro, _imagem);
+		imagem = "";
+
+		return "redirect:/lifetree/produtos/Estoque";
 	}
 
 	

@@ -62,8 +62,7 @@ public class LivroService {
 		Livro _livro = livro;
 
 		_livro.setPreco(0.0);
-		//_livro.setQuantidade(0);
-		
+		_livro.setQuantidade(0);
 		_livro.setStatusLivro("INATIVO");
 		livroRepository.save(_livro);
 	}
@@ -91,20 +90,21 @@ public class LivroService {
 		} else {
 			livro.setImagem(null);
 		}
+		livro.setStatusLivro("ATIVO");
 		return livroRepository.save(livro);
 	}
 
 
 	@Transactional
-	public void atualizarLivro(MultipartFile file, Livro _livro, byte[] foto) {
+	public void atualizarLivro(MultipartFile file, Livro _livro, byte[] imagem) {
 
 		
-		if (file.getSize() == 0 && foto.length == 0) {
+		if (file.getSize() == 0 && imagem.length == 0) {
 			_livro.setImagem(null);
 		}
 
-		if (file.getSize() == 0 && foto.length > 0) {
-			_livro.setImagem(foto);
+		if (file.getSize() == 0 && imagem.length > 0) {
+			_livro.setImagem(imagem);
 		}
 
 		if (file != null && file.getSize() > 0) {
@@ -114,9 +114,6 @@ public class LivroService {
 				e.printStackTrace();
 			}
 		}
-
-
-
 		_livro.setStatusLivro("ATIVO");
 		livroRepository.save(_livro);
 	}
@@ -127,11 +124,7 @@ public class LivroService {
 		return livroRepository.save(_livro);
 	}
 
-	// METODO SELECT * FROM livro
-	public List<Livro> ListarTodosLivro() {
-		List<Livro> lista = livroRepository.findAll();
-		return lista;
-	}
+	
 
 
 	
