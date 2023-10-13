@@ -85,7 +85,7 @@ public class FuncionarioController {
 				return "redirect:/universoliterario/funcionario/Estoque";
 			} else if (funclogado.getAcesso().equals("adm")) {
 
-				return "redirect:/universoliterario/livros/AdicionarLivro";
+				return "redirect:/universoliterario/funcionario/EstoqueADM";
 			}
 		}
 
@@ -117,7 +117,7 @@ public class FuncionarioController {
 	
 	@GetMapping("/EstoqueADM")
 	public String getEstoqueAdm(ModelMap model) {
-		model.addAttribute("produtos", livroService.findAll());
+		model.addAttribute("livros", livroService.findAll());
 		return "EstoqueADM";
 	}
 	

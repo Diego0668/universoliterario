@@ -81,14 +81,6 @@ public class LivroController {
 
 	}
 	//tela de estoque
-	@GetMapping("/Estoque")
-	public String getEstoque(ModelMap model) {
-
-		model.addAttribute("livro", new Livro());
-
-		return "estoque";
-
-	}
 	@GetMapping("/EditarLivro")
 	public String getEditarLivro(ModelMap model) {
 		

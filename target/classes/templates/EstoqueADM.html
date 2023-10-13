@@ -74,12 +74,13 @@
 </head>
 
 <body>
-	<div class="container">
+		<div class="container">
 		<h2>Lista de Livros Disponiveis</h2>
 
 		<table class="table">
 			<thead>
 				<tr>
+
 					<th scope="col">ID</th>
 					<th scope="col">Titulo</th>
 					<th scope="col">ISBN</th>
@@ -90,10 +91,9 @@
 					<th scope="col">Inativar</th>
 
 				</tr>
-
+			</thead>
 			<tbody>
-				<tr th:each="livro:${livros}">
-
+				<tr th:each="livro : ${livros}">
 					<td th:text="${livro.id}"></td>
 					<td th:text="${livro.titulo}"></td>
 					<td th:text="${livro.isbn}"></td>
@@ -107,11 +107,9 @@
 					<td><a th:href="@{/universoliterario/livros/inativar/{id}(id=${livro.id})}"
 							class="btn  btn-success btn-sm pb-0">
 							Inativar
-						</a>
-					</td>
+						</a></td>
 				</tr>
 			</tbody>
-			</thead>
 		</table>
 	</div>
 </body>
