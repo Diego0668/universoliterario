@@ -46,87 +46,66 @@ public class FuncionarioController {
 
 	@GetMapping("/login")
 	public String getLogin(ModelMap model) {
-
 		model.addAttribute("funcionario", new Funcionario());
-
 		return "login";
-
 	}
 
 	@GetMapping("/criarconta")
 	public String getConta(ModelMap model) {
-
 		model.addAttribute("funcionario", new Funcionario());
-
 		return "CriarConta";
-
 	}
 
 	@GetMapping("/Estoque")
 	public String getEstoque(ModelMap model) {
-
 		List<Livro> livros = livroService.findAll();
 		model.addAttribute("livros", livros);
-
 		return "Estoque";
-
 	}
 
 	@PostMapping("/logar")
 	public String Acessar(ModelMap map, @RequestParam("email") String email, @RequestParam("senha") String senha,
 			HttpSession session) {
-
 		Funcionario funclogado = funcionarioService.acessar(email, senha);
-
 		if (funclogado != null) {
 			session.setAttribute("funclogado", funclogado);
 			if (funclogado.getAcesso().equals("func")) {
-
 				return "redirect:/universoliterario/funcionario/Estoque";
 			} else if (funclogado.getAcesso().equals("adm")) {
-
 				return "redirect:/universoliterario/funcionario/listaFun";
 			}
 		}
-
 		return "redirect:/universoliterario/funcionario/login";
 	}
 
 	@PostMapping("/save")
 	public String saveFuncionario(@ModelAttribute Funcionario funcionario) {
-
 		funcionario.setAcesso("func");
-
 		funcionarioService.saveNewFuncionario(funcionario);
-
 		return "redirect:/universoliterario/funcionario/login";
 	}
 
 	@GetMapping("/inativar/{id}")
 	public String inativarFunc(@PathVariable("id") int id, ModelMap model) {
-
 		Funcionario funcionario = funcionarioService.findById(id);
-
 		funcionarioService.inativarFunc(funcionario);
-
 		return "redirect:/lifetree/funcionario/ListaFunc";
 	}
-	
-	
-	//Adm
-	
+
+	// Adm
+
 	@GetMapping("/EstoqueADM")
 	public String getEstoqueAdm(ModelMap model) {
 		model.addAttribute("livros", livroService.findAll());
 		return "EstoqueADM";
 	}
-	
+
 	@GetMapping("/listaFunc_")
 	public String getLista(ModelMap map) {
 		map.addAttribute("funcionarios", funcionarioService.ListarTodos());
 		return "listaFun";
 	}
-	
+
 	@GetMapping("/listaFun")
 	public String getFuncionarios(ModelMap model, @RequestParam(value = "funcionarios", required = false) String nome) {
 
@@ -141,5 +120,7 @@ public class FuncionarioController {
 		}
 		return "listaFun";
 	}
+	
+	
 
 }

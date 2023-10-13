@@ -35,24 +35,22 @@ public class LivroController {
 	final AutorService autorService;
 	final EditoraService editoraService;
 
-
-
-	public LivroController(LivroService _livroService, GeneroService  _generoService, 
-			AutorService  _autorService, EditoraService  _editoraService) {
+	public LivroController(LivroService _livroService, GeneroService _generoService, AutorService _autorService,
+			EditoraService _editoraService) {
 		super();
 		this.livroService = _livroService;
 		this.generoService = _generoService;
 		this.autorService = _autorService;
 		this.editoraService = _editoraService;
 
-
 	}
-	
+
 	private String imagem = "";
+
 	@PostMapping("/save")
 	public String gravarLivro(@RequestParam(value = "file", required = false) MultipartFile file, Livro livro,
 			ModelMap model, @RequestParam String autor, @RequestParam String editora) {
-		
+
 		// código do autor
 //		Autor autor1 = new Autor();
 //		autor1 = autorService.findByNome(autor);
@@ -63,15 +61,15 @@ public class LivroController {
 //		// Atualizando informações no livro
 //		livro.setAutor(autor1); 	
 //		livro.setEditora(editora1);
-		
+
 		livroService.gravarNovoLivro(file, livro);
 		return "redirect:/universoliterario/funcionario/Estoque";
 	}
-	
-	//tela de adicionar livro
+
+	// tela de adicionar livro
 	@GetMapping("/AdicionarLivro")
 	public String getAdd(ModelMap model) {
-		
+
 		model.addAttribute("autores", autorService.findAll());
 		model.addAttribute("editoras", editoraService.findAll());
 		model.addAttribute("generos", generoService.findAll());
@@ -80,10 +78,11 @@ public class LivroController {
 		return "AdicionarLivro";
 
 	}
-	//tela de estoque
+
+	// tela de estoque
 	@GetMapping("/EditarLivro")
 	public String getEditarLivro(ModelMap model) {
-		
+
 		model.addAttribute("autores", autorService.findAll());
 		model.addAttribute("editoras", editoraService.findAll());
 		model.addAttribute("generos", generoService.findAll());
@@ -92,7 +91,7 @@ public class LivroController {
 		return "EditarLivro";
 
 	}
-	
+
 	@GetMapping("/show/imagem/{id}")
 	@ResponseBody
 	public void mostrarImagem(@PathVariable("id") long id, HttpServletResponse response, Livro livro)
@@ -109,8 +108,7 @@ public class LivroController {
 
 		response.getOutputStream().close();
 	}
-	
-	
+
 	@GetMapping("/inativar/{id}")
 	public String inativarProd(@PathVariable("id") int id, ModelMap model) {
 
@@ -120,7 +118,7 @@ public class LivroController {
 
 		return "redirect:/universoliterario/funcionario/Estoque";
 	}
-	
+
 	@GetMapping("/atualizar/{id}")
 	public String atualizarProduto(@RequestParam(value = "file", required = false) MultipartFile file,
 			@PathVariable("id") int id, Livro livro, ModelMap model) {
@@ -130,9 +128,19 @@ public class LivroController {
 		livroService.atualizarLivro(file, livro, _imagem);
 		imagem = "";
 
-		return "redirect:/lifetree/produtos/Estoque";
+		return "redirect:/universoliterario/funcionario/Estoque";
 	}
 
-	
+	/// ADM
+
+	@GetMapping("/adicionarADM")
+	public String getAdicionaADM(ModelMap model) {
+		model.addAttribute("autores", autorService.findAll());
+		model.addAttribute("editoras", editoraService.findAll());
+		model.addAttribute("generos", generoService.findAll());
+		model.addAttribute("livro", new Livro());
+		
+		return "adicionarADM";
+	}
 
 }
