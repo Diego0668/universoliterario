@@ -33,7 +33,6 @@ public class FuncionarioController {
 	final AutorService autorService;
 	final EditoraService editoraService;
 
-
 	// INJEÇÃO DE DEPENDENCIA
 
 	public FuncionarioController(FuncionarioService _funcionarioService, GeneroService _generoService,
@@ -47,23 +46,16 @@ public class FuncionarioController {
 
 	@GetMapping("/login")
 	public String getLogin(ModelMap model) {
-
 		model.addAttribute("funcionario", new Funcionario());
-
 		return "login";
-
 	}
-	
-	
 
 	@GetMapping("/criarconta")
 	public String getConta(ModelMap model) {
-
 		model.addAttribute("funcionario", new Funcionario());
-	
 		return "CriarConta";
-
 	}
+<<<<<<< HEAD
 	
 	
 	
@@ -76,44 +68,83 @@ public class FuncionarioController {
 			HttpSession session) {
 		
 		Funcionario funclogado = funcionarioService.acessar(email, senha);
+=======
 
+	@GetMapping("/Estoque")
+	public String getEstoque(ModelMap model) {
+		List<Livro> livros = livroService.findAll();
+		model.addAttribute("livros", livros);
+		return "Estoque";
+	}
+>>>>>>> 63cc81ca230528647b00bb1667baa9efb94ad5ed
+
+	@PostMapping("/logar")
+	public String Acessar(ModelMap map, @RequestParam("email") String email, @RequestParam("senha") String senha,
+			HttpSession session) {
+		Funcionario funclogado = funcionarioService.acessar(email, senha);
 		if (funclogado != null) {
 			session.setAttribute("funclogado", funclogado);
 			if (funclogado.getAcesso().equals("func")) {
+<<<<<<< HEAD
 				
 				return "redirect:/universoliterario/livros/Estoque";
 			} else if (funclogado.getAcesso().equals("adm")) {
 				
 	
 				return "redirect:/universoliterario/livros/Estoque";
+=======
+				return "redirect:/universoliterario/funcionario/Estoque";
+			} else if (funclogado.getAcesso().equals("adm")) {
+				return "redirect:/universoliterario/funcionario/listaFun";
+>>>>>>> 63cc81ca230528647b00bb1667baa9efb94ad5ed
 			}
 		}
-
 		return "redirect:/universoliterario/funcionario/login";
 	}
-	
 
 	@PostMapping("/save")
 	public String saveFuncionario(@ModelAttribute Funcionario funcionario) {
-
 		funcionario.setAcesso("func");
-
 		funcionarioService.saveNewFuncionario(funcionario);
-
 		return "redirect:/universoliterario/funcionario/login";
 	}
-	
+
 	@GetMapping("/inativar/{id}")
 	public String inativarFunc(@PathVariable("id") int id, ModelMap model) {
-
 		Funcionario funcionario = funcionarioService.findById(id);
-
 		funcionarioService.inativarFunc(funcionario);
-
 		return "redirect:/lifetree/funcionario/ListaFunc";
 	}
 
+	// Adm
 
+	@GetMapping("/EstoqueADM")
+	public String getEstoqueAdm(ModelMap model) {
+		model.addAttribute("livros", livroService.findAll());
+		return "EstoqueADM";
+	}
+
+	@GetMapping("/listaFunc_")
+	public String getLista(ModelMap map) {
+		map.addAttribute("funcionarios", funcionarioService.ListarTodos());
+		return "listaFun";
+	}
+
+	@GetMapping("/listaFun")
+	public String getFuncionarios(ModelMap model, @RequestParam(value = "funcionarios", required = false) String nome) {
+
+		List<Funcionario> funcionarios = null;
+
+		if (nome == null) {
+			funcionarios = funcionarioService.TodosFuncionarios();
+			model.addAttribute("funcionarios", funcionarios);
+		} else {
+			funcionarios = funcionarioService.FiltroFunc(nome);
+			model.addAttribute("funcionarios", funcionarios);
+		}
+		return "listaFun";
+	}
+	
 	
 
 }
