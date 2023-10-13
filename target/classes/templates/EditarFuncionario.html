@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/tcc-3.0/static/css/EditarFuncionario.css">
+	<link rel="stylesheet" href="/tcc-3.0/static/css/ListaFunc.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+		integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+		crossorigin="anonymous"></script>
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Editar Funcionário</title>
+</head>
+
+<body>
+	<header>
+		<nav class="navbar">
+			<div class="logo">Universo Literário</div>
+			</ul>
+		</nav>
+	</header>
+	<!--header acabou-->
+
+	<section class="main">
+
+		<div class="sidebar">
+			
+			<div class="logo_details">
+				
+				<i class="bx bx-menu" id="btn"></i>
+			</div>
+			<ul class="nav-list">
+				
+				<li>
+					<a href="/universoliterario/funcionario/AdicionarLivroADM">
+						<i class='bx bx-book-add'></i>
+						<span class="link_name">Adicionar Livro</span>
+					</a>
+					<span class="tooltip">Adicionar Livro</span>
+				</li>
+
+				<li>
+					<a href="/universoliterario/funcionario/EstoqueADM">
+						<i class='bx bx-box' ></i>
+						<span class="link_name">Estoque</span>
+					</a>
+					<span class="tooltip">Estoque</span>
+				</li>
+
+				<li>
+					<a href="/universoliterario/funcionario/ListaFunc">
+						<i class='bx bxs-user-circle' ></i>
+						<span class="link_name">Funcionários</span>
+					</a>
+					<span class="tooltip">Funcionários</span>
+				</li>
+
+				<li>
+					<a href="/universoliterario/funcionario/login">
+					  <i class="bx bx-log-out" id="log_out"></i>
+					  <span class="link_name">Sair</span>
+					</a>
+					<span class="tooltip">Sair</span>
+				  </li>
+
+				<li class="profile">
+					<div class="profile_details">
+						<div class="profile_content">
+							<h1 class="name"><span th:text="${session.funclogado.nome}"></span></h1>
+							<h1 class="designation"><span th:text="${session.funclogado.acesso}"></span></h1>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+			
+			</div>
+		</form>
+
+        <section class="module box">
+            <div class="title">
+                <h2>Editar Funcionários</h2>
+                <hr/>
+            </div>
+
+
+            <br>
+            <br>
+            <form id="editEmployeeForm">
+				<div class="form-group">
+					<label for="nome">ID:</label>
+					<input type="text" id="nome" name="nome" required>
+				</div>
+				<div class="form-group">
+					<label for="nome">Nome:</label>
+					<input type="text" id="nome" name="nome" required>
+				</div>
+				<div class="form-group">
+					<label for="senha">Senha:</label>
+					<input type="password" id="senha" name="senha" required>
+				</div>
+				<div class="form-group">
+					<label for="email">Email:</label>
+					<input type="email" id="email" name="email" required>
+				</div>
+				<label for="genero">Nível de acesso:</label>
+				<select id="genero" name="genero" required>
+					<option value="1"></option>
+					<option value="2">ADM</option>
+					<option value="3">FUNC</option>
+
+				</select>
+				<br>
+				<br>
+				<td><a th:href="@{/universoliterario/funcionario/inativar/{id}(id=${funcionario.id})}"
+						
+					class="btn btn-purple btn-sm pb-0 " style="background-color: #a682ff;" href="ListaFunc.html">Salvar</a></td>
+			</tr>
+			</form>
+		</div>
+	
+	
+	
+	
+	
+	
+        </section>
+
+    </section>
+    <script src="/tcc-3.0/static/js/EditarProduto.js"></script>
+    <script src="/tcc-3.0/static/js/Sidebar.js"></script>
+</body>
+
+
+<!--<p>Código de Barra <input class="Imput" type="number" th:field="*{cod_barra}" /></p>-->
+</html>

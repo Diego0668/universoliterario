@@ -85,7 +85,7 @@ public class FuncionarioController {
 				return "redirect:/universoliterario/funcionario/Estoque";
 			} else if (funclogado.getAcesso().equals("adm")) {
 
-				return "redirect:/universoliterario/funcionario/EstoqueADM";
+				return "redirect:/universoliterario/funcionario/listaFun";
 			}
 		}
 
@@ -121,14 +121,14 @@ public class FuncionarioController {
 		return "EstoqueADM";
 	}
 	
-	@GetMapping("/ListaFunc_")
+	@GetMapping("/listaFunc_")
 	public String getLista(ModelMap map) {
-		map.addAttribute("funcionario", funcionarioService.ListarTodos());
-		return "ListaFunc";
+		map.addAttribute("funcionarios", funcionarioService.ListarTodos());
+		return "listaFun";
 	}
 	
-	@GetMapping("/ListaFunc")
-	public String getFuncionarios(ModelMap model, @RequestParam(value = "funcionario", required = false) String nome) {
+	@GetMapping("/listaFun")
+	public String getFuncionarios(ModelMap model, @RequestParam(value = "funcionarios", required = false) String nome) {
 
 		List<Funcionario> funcionarios = null;
 
@@ -139,7 +139,7 @@ public class FuncionarioController {
 			funcionarios = funcionarioService.FiltroFunc(nome);
 			model.addAttribute("funcionarios", funcionarios);
 		}
-		return "ListaFunc";
+		return "listaFun";
 	}
 
 }

@@ -118,7 +118,7 @@ public class LivroController {
 
 		livroService.inativarLivro(livro);
 
-		return "redirect:/universoliterario/livros/Estoque";
+		return "redirect:/universoliterario/funcionario/Estoque";
 	}
 	
 	@GetMapping("/atualizar/{id}")
