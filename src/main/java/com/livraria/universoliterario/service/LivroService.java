@@ -99,6 +99,9 @@ public class LivroService {
 	public void atualizarLivro(MultipartFile file, Livro _livro, byte[] imagem) {
 
 		
+		System.out.println("fi" + file.getSize());
+		System.out.println("fo" + imagem.length);
+		
 		if (file.getSize() == 0 && imagem.length == 0) {
 			_livro.setImagem(null);
 		}

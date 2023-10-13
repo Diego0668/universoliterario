@@ -118,13 +118,19 @@
 						<label for="preco">Quantidade</label>
 						<input type="number" id="preco" name="preco" required th:field="*{quantidade}">
 
-
-
 						<label for="sinopse">Sinopse</label>
 						<textarea id="sinopse" name="sinopse" rows="4" required th:field="*{sinopse}"></textarea>
 
-						<label for="imagens">Imagens do Livro</label>
-						<input type="file" id="imagem" name="file" accept="image/*" required>
+						<div class="form-group-col-md-8">
+
+							<img id="preView" alt="..."
+								th:src="*{Imagem} ? @{${'/lifetree/produtos/show/image/' + produto.id}} :${semImagem}">
+						</div>
+
+						<div class="form-group-col-md-4">
+							<input class="form-control" type="file" onchange="preViewImg();" name="file"
+								accept="image/*" id="uploadImage">
+						</div>
 
 						<button type="submit">Adicionar Livro</button>
 
@@ -133,13 +139,6 @@
 
 			</form>
 	</div>
-
+	<script src="/js/EditarProduto.js"></script>
 </body>
-
-</html>
-
-
-</div>
-</body>
-
 </html>

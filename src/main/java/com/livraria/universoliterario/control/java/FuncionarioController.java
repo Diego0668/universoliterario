@@ -128,7 +128,7 @@ public class FuncionarioController {
 	}
 	
 	@GetMapping("/ListaFunc")
-	public String verFuncionarios(ModelMap model, @RequestParam(value = "funcionario", required = false) String nome) {
+	public String getFuncionarios(ModelMap model, @RequestParam(value = "funcionario", required = false) String nome) {
 
 		List<Funcionario> funcionarios = null;
 
