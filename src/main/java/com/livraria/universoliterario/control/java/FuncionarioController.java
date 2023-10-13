@@ -55,48 +55,44 @@ public class FuncionarioController {
 		model.addAttribute("funcionario", new Funcionario());
 		return "CriarConta";
 	}
-<<<<<<< HEAD
-	
-	
-	
-	
-	
-	
-	@PostMapping("/logar")
-	public String Acessar(ModelMap map, 
-			@RequestParam("email") String email, @RequestParam("senha") String senha,
-			HttpSession session) {
+	@GetMapping("/AdicionarLivroADM")
+	public String getAdd(ModelMap model) {
 		
-		Funcionario funclogado = funcionarioService.acessar(email, senha);
-=======
+		model.addAttribute("autores", autorService.findAll());
+		model.addAttribute("editoras", editoraService.findAll());
+		model.addAttribute("generos", generoService.findAll());
+		model.addAttribute("livro", new Livro());
 
-	@GetMapping("/Estoque")
-	public String getEstoque(ModelMap model) {
-		List<Livro> livros = livroService.findAll();
-		model.addAttribute("livros", livros);
-		return "Estoque";
+		return "AdicionarLivroADM";
+
 	}
->>>>>>> 63cc81ca230528647b00bb1667baa9efb94ad5ed
+
+	
+	
+	
+	
+	
+	
+	
+
 
 	@PostMapping("/logar")
 	public String Acessar(ModelMap map, @RequestParam("email") String email, @RequestParam("senha") String senha,
 			HttpSession session) {
+		
 		Funcionario funclogado = funcionarioService.acessar(email, senha);
+		
 		if (funclogado != null) {
 			session.setAttribute("funclogado", funclogado);
 			if (funclogado.getAcesso().equals("func")) {
-<<<<<<< HEAD
+
 				
 				return "redirect:/universoliterario/livros/Estoque";
 			} else if (funclogado.getAcesso().equals("adm")) {
 				
 	
-				return "redirect:/universoliterario/livros/Estoque";
-=======
-				return "redirect:/universoliterario/funcionario/Estoque";
-			} else if (funclogado.getAcesso().equals("adm")) {
 				return "redirect:/universoliterario/funcionario/listaFun";
->>>>>>> 63cc81ca230528647b00bb1667baa9efb94ad5ed
+
 			}
 		}
 		return "redirect:/universoliterario/funcionario/login";

@@ -74,7 +74,7 @@
 </head>
 
 <body>
-<<<<<<< HEAD
+
 	
   <div class="container">
     <h2>Lista de Livros Disponiveis</h2>
@@ -118,7 +118,7 @@
     
     
     
-=======
+
 		<div class="sidebar">
 		<div class="adm">Administrador</div>
 		<ul class="menu">
@@ -127,45 +127,8 @@
 		</ul>
 	</div>
 	
-	<div class="container">
-		<h2>Lista de Livros Disponiveis</h2>
+	
 
-		<table class="table">
-			<thead>
-				<tr>
-
-					<th scope="col">ID</th>
-					<th scope="col">Titulo</th>
-					<th scope="col">ISBN</th>
-					<th scope="col">Quantidade</th>
-					<th scope="col">Preço</th>
-					<th scope="col">Status</th>
-					<th scope="col">Editar</th>
-					<th scope="col">Inativar</th>
-
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="livro : ${livros}">
-					<td th:text="${livro.id}"></td>
-					<td th:text="${livro.titulo}"></td>
-					<td th:text="${livro.isbn}"></td>
-					<td th:text="${livro.quantidade}"></td>
-					<td th:text="${livro.preco}"></td>
-					<td th:text="${livro.statusLivro}"></td>
-					<td><a th:href="@{/universoliterario/livros/atualizar/{id}(id=${livro.id})}"
-							class="btn  btn-success btn-sm pb-0">
-							Editar
-						</a></td>
-					<td><a th:href="@{/universoliterario/livros/inativar/{id}(id=${livro.id})}"
-							class="btn  btn-success btn-sm pb-0">
-							Inativar
-						</a></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
->>>>>>> 63cc81ca230528647b00bb1667baa9efb94ad5ed
 </body>
 
 </html>
