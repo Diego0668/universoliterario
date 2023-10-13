@@ -134,7 +134,7 @@ public class LivroController {
 	}
 	
 	@GetMapping("/atualizar/{id}")
-	public String atualizarProduto(@RequestParam(value = "file", required = false) MultipartFile file,
+	public String atualizarLivro(@RequestParam(value = "file", required = false) MultipartFile file,
 			@PathVariable("id") int id, Livro livro, ModelMap model) {
 
 		byte[] _imagem = Base64.getDecoder().decode(imagem);
@@ -142,7 +142,26 @@ public class LivroController {
 		livroService.atualizarLivro(file, livro, _imagem);
 		imagem = "";
 
-		return "redirect:/lifetree/produtos/Estoque";
+		return "redirect:/universoliterario/livros/Estoque";
+	}
+	
+	@GetMapping("/EditarLivro/{id}")
+	public String editarLivro(@PathVariable("id") int id, ModelMap model) {
+
+		Livro livro = livroService.findById(id);
+
+		if (livro.getImagem() != null) {
+			if (livro.getImagem().length > 0) {
+				imagem = Base64.getEncoder().encodeToString(livro.getImagem());
+			}
+		}
+
+		model.addAttribute("autores", autorService.findAll());
+		model.addAttribute("editoras", editoraService.findAll());
+		model.addAttribute("generos", generoService.findAll());
+		model.addAttribute("livro", new Livro());
+
+		return "EditarLivro";
 	}
 
 	

@@ -6,16 +6,38 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Adicionar Livro</title>
 	<link rel="stylesheet" href="css/cadastrar.css">
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 
 <body>
-	<div class="sidebar">
-		<div class="adm">Administrador</div>
-		<ul class="menu">
-			<li><a href="/universoliterario/funcionario/Estoque">Estoque</a></li>
-			<li><a href="/universoliterario/livros/AdicionarLivro">Adicionar livros</a></li>
-		</ul>
-	</div>
+	 <section class="main">
+    <div class="sidebar">
+      <div class="logo_details">
+        <div class="logo_name">Sistema de controle</div>
+      </div>
+      <ul class="nav-list">
+       
+
+        <li>
+          <a href="/universoliterario/livros/Estoque">
+            <i class="bx bx-bar-chart-alt-2"></i>
+            <span class="link_name">Estoque de Livros</span>
+          </a>
+          
+        </li>
+
+        <li>
+          <a href="/universoliterario/funcionario/login">
+            <i class="bx bx-log-out" id="log_out"></i>
+            <span class="link_name">Sair</span>
+          </a>
+        </li>
+
+        
+      </ul>
+    </div>
+  </section>
 	<div class="content">
 		<!-- Conteúdo da página -->
 
@@ -122,7 +144,17 @@
 						<textarea id="sinopse" name="sinopse" rows="4" required th:field="*{sinopse}"></textarea>
 
 						<label for="imagens">Imagens do Livro</label>
-						<input type="file" id="imagem" name="file" accept="image/*" required>
+						<div class="form-group-col-md-4">
+							<input class="form-control" type="file" onchange="preViewImg();" name="file"
+								accept="image/*" id="uploadImage">
+						</div>
+						<div class="form-group-col-md-8">
+
+							<img id="preView" alt="..."
+								th:src="*{imagem} ? @{${'/universoliterario/livros/show/image/' + livros.id}} :${semImagem}">
+						</div>
+
+						
 
 						<button type="submit">Adicionar Livro</button>
 
@@ -133,6 +165,7 @@
 	</div>
 
 </body>
+	<script src="/js/EditarProduto.js"></script>
 
 </html>
 
