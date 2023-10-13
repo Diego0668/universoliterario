@@ -97,7 +97,7 @@ public class FuncionarioApiController {
 			List<Livro> livrosApi = new ArrayList<Livro>();
 
 			if (title2 == null)
-				//livroService.ListarTodosLivro().forEach(livrosApi::add);
+				livroService.findAll().forEach(livrosApi::add);
 
 			if (livrosApi.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);

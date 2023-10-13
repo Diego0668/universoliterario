@@ -65,17 +65,7 @@ public class FuncionarioController {
 
 	}
 	
-	@GetMapping("/Estoque")
-	public String getEstoque(ModelMap model) {
-		
-
-		List<Livro> livros = livroService.findAll();
-		model.addAttribute("livros", livros);
-		
-		
-		return "Estoque";
-
-	}
+	
 	
 	
 	
@@ -91,11 +81,11 @@ public class FuncionarioController {
 			session.setAttribute("funclogado", funclogado);
 			if (funclogado.getAcesso().equals("func")) {
 				
-				return "redirect:/universoliterario/funcionario/Estoque";
+				return "redirect:/universoliterario/livros/Estoque";
 			} else if (funclogado.getAcesso().equals("adm")) {
 				
 	
-				return "redirect:/universoliterario/livros/AdicionarLivro";
+				return "redirect:/universoliterario/livros/Estoque";
 			}
 		}
 

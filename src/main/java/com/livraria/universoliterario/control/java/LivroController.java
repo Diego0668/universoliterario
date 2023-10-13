@@ -2,6 +2,7 @@ package com.livraria.universoliterario.control.java;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -65,7 +66,7 @@ public class LivroController {
 //		livro.setEditora(editora1);
 		
 		livroService.gravarNovoLivro(file, livro);
-		return "redirect:/universoliterario/funcionario/Estoque";
+		return "redirect:/universoliterario/livros/Estoque";
 	}
 	
 	//tela de adicionar livro
@@ -84,11 +85,14 @@ public class LivroController {
 	@GetMapping("/Estoque")
 	public String getEstoque(ModelMap model) {
 
-		model.addAttribute("livro", new Livro());
+		List<Livro> livros = livroService.findAll();
+		model.addAttribute("livros", livros);
 
-		return "estoque";
+		return "Estoque";
 
 	}
+	
+
 	@GetMapping("/EditarLivro")
 	public String getEditarLivro(ModelMap model) {
 		
