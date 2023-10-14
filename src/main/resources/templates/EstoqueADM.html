@@ -108,11 +108,11 @@
 					<td th:text="${livro.quantidade}"></td>
 					<td th:text="${livro.preco}"></td>
 					<td th:text="${livro.statusLivro}"></td>
-					<td><a th:href="@{/universoliterario/livros/atualizar/{id}(id=${livro.id})}"
+					<td><a th:href="@{/universoliterario/livros/EditarLivroADM/{id}(id=${livro.id})}"
 							class="btn  btn-success btn-sm pb-0">
 							Editar
 						</a></td>
-					<td><a th:href="@{/universoliterario/livros/inativar/{id}(id=${livro.id})}"
+					<td><a th:href="@{/universoliterario/livros/inativarADM/{id}(id=${livro.id})}"
 							class="btn  btn-success btn-sm pb-0">
 							Inativar
 						</a></td>

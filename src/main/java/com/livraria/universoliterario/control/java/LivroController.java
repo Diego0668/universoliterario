@@ -50,23 +50,20 @@ public class LivroController {
 	}
 	
 	private String imagem = "";
+	
 	@PostMapping("/save")
 	public String gravarLivro(@RequestParam(value = "file", required = false) MultipartFile file, Livro livro,
 			ModelMap model, @RequestParam String autor, @RequestParam String editora) {
 		
-		// código do autor
-//		Autor autor1 = new Autor();
-//		autor1 = autorService.findByNome(autor);
-//		
-//		// código da editora
-//		Editora editora1 = editoraService.findByNome(editora);
-//				
-//		// Atualizando informações no livro
-//		livro.setAutor(autor1); 	
-//		livro.setEditora(editora1);
-		
 		livroService.gravarNovoLivro(file, livro);
 		return "redirect:/universoliterario/livros/Estoque";
+	}
+	
+	@PostMapping("/saveADM")
+	public String gravarLivroADM(@RequestParam(value = "file", required = false) MultipartFile file, Livro livro,
+			ModelMap model, @RequestParam String autor, @RequestParam String editora) {
+		livroService.gravarNovoLivro(file, livro);
+		return "redirect:/universoliterario/funcionario/EstoqueADM";
 	}
 	
 	//tela de adicionar livro
@@ -124,13 +121,22 @@ public class LivroController {
 	
 	
 	@GetMapping("/inativar/{id}")
-	public String inativarProd(@PathVariable("id") int id, ModelMap model) {
+	public String inativarLivro(@PathVariable("id") int id, ModelMap model) {
 
 		Livro livro = livroService.findById(id);
 
 		livroService.inativarLivro(livro);
 
 		return "redirect:/universoliterario/livros/Estoque";
+	}
+	@GetMapping("/inativarADM/{id}")
+	public String inativarLivroADM(@PathVariable("id") int id, ModelMap model) {
+
+		Livro livro = livroService.findById(id);
+
+		livroService.inativarLivro(livro);
+
+		return "redirect:/universoliterario/funcionario/EstoqueADM";
 	}
 	
 	@PostMapping("/atualizar/{id}")
@@ -162,6 +168,37 @@ public class LivroController {
 		model.addAttribute("livro", livro);
 
 		return "EditarLivro";
+	}
+	
+	@GetMapping("/EditarLivroADM/{id}")
+	public String editarLivroADM(@PathVariable("id") int id, ModelMap model) {
+
+		Livro livro = livroService.findById(id);
+
+		if (livro.getImagem() != null) {
+			if (livro.getImagem().length > 0) {
+				imagem = Base64.getEncoder().encodeToString(livro.getImagem());
+			}
+		}
+
+		model.addAttribute("autores", autorService.findAll());
+		model.addAttribute("editoras", editoraService.findAll());
+		model.addAttribute("generos", generoService.findAll());
+		model.addAttribute("livro", livro);
+
+		return "EditarLivroADM";
+	}
+	
+	@PostMapping("/atualizarADM/{id}")
+	public String atualizarLivroADM(@RequestParam(value = "file", required = false) MultipartFile file,
+			@PathVariable("id") int id, Livro livro, ModelMap model) {
+
+		byte[] _imagem = Base64.getDecoder().decode(imagem);
+
+		livroService.atualizarLivro(file, livro, _imagem);
+		imagem = "";
+
+		return "redirect:/universoliterario/funcionario/EstoqueADM";
 	}
 
 	

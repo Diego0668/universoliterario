@@ -1,5 +1,6 @@
 package com.livraria.universoliterario.control.java;
 
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.livraria.universoliterario.model.entity.Funcionario;
 import com.livraria.universoliterario.model.entity.Livro;
@@ -66,6 +68,26 @@ public class FuncionarioController {
 		return "AdicionarLivroADM";
 
 	}
+	@GetMapping("/EditarFuncionario/{id}")
+	public String editarFuncionario(@PathVariable("id") int id, ModelMap model) {
+
+		Funcionario funcionario = funcionarioService.findById(id);
+		model.addAttribute("funcionario", funcionario);
+
+		return "EditarFuncionario";
+	}
+	
+	@PostMapping("/atualizar/{id}")
+	public String atualizarFunc(@RequestParam(required = false)
+			@PathVariable("id") int id, Funcionario funcionario, ModelMap model) {
+
+	
+
+		funcionarioService.atualizarFunc(funcionario);
+	
+
+		return "redirect:/universoliterario/funcionario/listaFun";
+	}
 
 	
 	
@@ -104,12 +126,13 @@ public class FuncionarioController {
 		funcionarioService.saveNewFuncionario(funcionario);
 		return "redirect:/universoliterario/funcionario/login";
 	}
+	
 
 	@GetMapping("/inativar/{id}")
 	public String inativarFunc(@PathVariable("id") int id, ModelMap model) {
 		Funcionario funcionario = funcionarioService.findById(id);
 		funcionarioService.inativarFunc(funcionario);
-		return "redirect:/lifetree/funcionario/ListaFunc";
+		return "redirect:/universoliterario/funcionario/listaFun";
 	}
 
 	// Adm
@@ -140,6 +163,8 @@ public class FuncionarioController {
 		}
 		return "listaFun";
 	}
+	
+	
 	
 	
 

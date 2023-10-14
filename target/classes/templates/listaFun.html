@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lista de Livros</title>
+<title>Lista de Funcionarios</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -100,10 +100,10 @@
 						<td th:text="${funcionario.Senha}"></td>
 						<td th:text="${funcionario.acesso}"></td>
 						<td>
-							<a th:href="@{universoliterario/funcionario/EditarFuncionario/{id}(id=${funcionario.id})}"
+							<a th:href="@{/universoliterario/funcionario/EditarFuncionario/{id}(id=${funcionario.id})}"
 								class="btn btn-success btn-sm pb-0">Editar</a>
 						</td>
-						<td><a th:href="@{universoliterario/funcionario/inativar/{id}(id=${funcionario.id})}"
+						<td><a th:href="@{/universoliterario/funcionario/inativar/{id}(id=${funcionario.id})}"
 							class="btn  btn-success btn-sm pb-0">Inativar</a></td>
 					</tr>
 

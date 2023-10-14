@@ -47,7 +47,7 @@ public class FuncionarioService {
 
 	@Transactional
 	public void atualizarFunc(Funcionario funcionario) {
-		
+		funcionario.setAcesso("func");
 		funcionarioRepository.save(funcionario);
 
 	}

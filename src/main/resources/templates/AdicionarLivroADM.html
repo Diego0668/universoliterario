@@ -78,7 +78,7 @@
 		</head>
 
 		<body>
-			<form th:action="@{/universoliterario/livros/save}" enctype="multipart/form-data" th:object="${livro}"
+			<form th:action="@{/universoliterario/livros/saveADM}" enctype="multipart/form-data" th:object="${livro}"
 				method="post">
 				<div class="container">
 					<h2>Adicionar Livro</h2>
@@ -123,7 +123,16 @@
 						<textarea id="sinopse" name="sinopse" rows="4" required th:field="*{sinopse}"></textarea>
 
 						<label for="imagens">Imagens do Livro</label>
-						<input type="file" id="imagem" name="file" accept="image/*" required>
+						<div class="form-group-col-md-4">
+							<input class="form-control" type="file" onchange="preViewImg();" name="file"
+								accept="image/*" id="uploadImage">
+						</div>
+						<div class="form-group-col-md-8">
+
+							<img id="preView" alt="..."
+								th:src="*{imagem} ? @{${'/universoliterario/livros/show/image/' + livros.id}} :${semImagem}">
+						</div>
+
 
 						<button type="submit">Adicionar Livro</button>
 
@@ -134,7 +143,7 @@
 	</div>
 
 </body>
-
+		<script src="/js/EditarProduto.js"></script>
 </html>
 
 
