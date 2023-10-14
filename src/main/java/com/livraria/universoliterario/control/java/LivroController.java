@@ -133,7 +133,7 @@ public class LivroController {
 		return "redirect:/universoliterario/livros/Estoque";
 	}
 	
-	@GetMapping("/atualizar/{id}")
+	@PostMapping("/atualizar/{id}")
 	public String atualizarLivro(@RequestParam(value = "file", required = false) MultipartFile file,
 			@PathVariable("id") int id, Livro livro, ModelMap model) {
 
@@ -159,7 +159,7 @@ public class LivroController {
 		model.addAttribute("autores", autorService.findAll());
 		model.addAttribute("editoras", editoraService.findAll());
 		model.addAttribute("generos", generoService.findAll());
-		model.addAttribute("livro", new Livro());
+		model.addAttribute("livro", livro);
 
 		return "EditarLivro";
 	}
